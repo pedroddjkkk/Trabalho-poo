@@ -19,10 +19,11 @@ public class teste {
 		ILeituraDeDados leitura = new Leitura();
 		IInserirDados insercao = new Insercao();
 		IBuscaDeDados busca = new Busca();
-		
-		ArrayList<Curso> listaTurma = busca.buscarCursos();
-		for (Curso c : listaTurma) {
-			System.out.println(c.getCampus().getNome());
+
+		ArrayList<Turma> turmas = busca.buscarTurmas();
+		for(Iterator iterator = turmas.iterator(); iterator.hasNext();) {
+			Turma turma = (Turma) iterator.next();
+			System.out.println(turma.getCurso().getCampus().getCidade());
 		}
 	}
 }

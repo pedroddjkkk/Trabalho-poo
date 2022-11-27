@@ -12,7 +12,7 @@ import br.edu.ifpr.trabalho.poo.modelo.Curso;
 public class CursoDAO {
 	public static ArrayList<Curso> listar(){
 		ArrayList<Curso> listaDeCurso = new ArrayList<Curso>();
-		String SQL = "SELECT * FROM tb_curso INNER JOIN (SELECT nome AS campus_nome, endereco AS campus_endereco, cidade AS campus_cidade, id_campus FROM tb_campus ) tb_campus ON tb_curso.fk_campus = tb_campus.id_campus";
+		String SQL = "SELECT * FROM tb_curso";
 		
 		try {
 			PreparedStatement preparacaoDaInstrucao = Conexao.getConexao().prepareStatement(SQL);
@@ -46,6 +46,22 @@ public class CursoDAO {
 		}
 	}
 
+	public static Curso listar(int fk){
+		String SQL = "SELECT DISTINCT * FROM matricula.tb_curso WHERE id_curso = ?";
+		try {
+			PreparedStatement preparacaoDaInstrucao = Conexao.getConexao().prepareStatement(SQL);
+			preparacaoDaInstrucao.setInt(1, fk);
+			ResultSet resultado = preparacaoDaInstrucao.executeQuery();
+			resultado.next();
+			Curso c = transformarResultSetEmObjeto(resultado);
+			return c;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	public static Curso transformarResultSetEmObjeto(ResultSet resultSet) throws SQLException {
 		Curso curso = new Curso();
 		Campus campus = new Campus();
@@ -53,10 +69,8 @@ public class CursoDAO {
 			curso.setNome(resultSet.getString("nome"));
 			curso.setDuracao(resultSet.getString("duracao"));
 			curso.setModalidade(resultSet.getString("modalidade"));
-			campus.setIdCampus(resultSet.getInt("fk_campus"));
-			campus.setNome(resultSet.getString("campus_nome"));
-			campus.setEndereco(resultSet.getString("campus_endereco"));
-			campus.setCidade(resultSet.getString("campus_cidade"));
+			curso.setIdCurso(resultSet.getInt("id_curso"));
+			campus = CampusDAO.listar(resultSet.getInt("fk_campus"));
 			curso.setCampus(campus);
 			return curso;
 		} catch (SQLException e) {

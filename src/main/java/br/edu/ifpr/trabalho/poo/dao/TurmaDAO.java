@@ -53,7 +53,7 @@ public class TurmaDAO {
 			turma.setNome(resultSet.getString("nome"));
 			turma.setNumeroMinimo(resultSet.getInt("numero_minimo"));
 			turma.setAnoIngresso(resultSet.getInt("ano_ingresso"));
-			curso.setIdCurso(resultSet.getInt("fk_curso"));
+			curso = CursoDAO.listar(resultSet.getInt("fk_curso"));
 			turma.setCurso(curso);
 			return turma;
 		} catch (SQLException e) {

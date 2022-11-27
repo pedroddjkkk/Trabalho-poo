@@ -9,7 +9,6 @@ import br.edu.ifpr.trabalho.poo.conexao.Conexao;
 import br.edu.ifpr.trabalho.poo.modelo.Campus;
 
 public class CampusDAO {
-	
 	public static ArrayList<Campus> listar(){
 		ArrayList<Campus> listaDeCampus = new ArrayList<Campus>();
 		String SQL = "SELECT * FROM matricula.tb_campus";
@@ -29,6 +28,22 @@ public class CampusDAO {
 		}		
 		return listaDeCampus;
 	}
+
+	public static Campus listar(int fk){
+		String SQL = "SELECT DISTINCT * FROM matricula.tb_campus WHERE id_campus = ?";
+		try {
+			PreparedStatement preparacaoDaInstrucao = Conexao.getConexao().prepareStatement(SQL);
+			preparacaoDaInstrucao.setInt(1, fk);
+			ResultSet resultado = preparacaoDaInstrucao.executeQuery();
+			resultado.next();
+			Campus c = transformarResultSetEmObjeto(resultado);
+			return c;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 	public static void salvar(Campus campus) {
 		String SQL = "INSERT INTO tb_campus (nome, endereco, cidade) VALUES (?, ?, ?)";
@@ -45,24 +60,6 @@ public class CampusDAO {
 		}
 	}
 
-	public static ArrayList<Campus> buscar() {
-		ArrayList<Campus> listaDeCampus = new ArrayList<Campus>();
-		String SQL = "SELECT * FROM tb_campus";
-		try {
-			PreparedStatement SQLPreparada = Conexao.getConexao().prepareStatement(SQL);
-			ResultSet resultado = SQLPreparada.executeQuery();
-			while (resultado.next()) {
-				Campus campus = new Campus();
-				campus.setNome(resultado.getString("nome"));
-				campus.setCidade(resultado.getString("cidade"));
-				campus.setEndereco(resultado.getString("endereco"));
-				listaDeCampus.add(campus);
-			}
-		} catch (Exception excecao) {
-			excecao.printStackTrace();
-		}
-		return listaDeCampus;
-	}
 	
 	public static Campus transformarResultSetEmObjeto(ResultSet resultSet) throws SQLException {
 		Campus campus = new Campus();
