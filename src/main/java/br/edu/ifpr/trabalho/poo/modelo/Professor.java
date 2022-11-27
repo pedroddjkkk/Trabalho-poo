@@ -2,6 +2,7 @@ package br.edu.ifpr.trabalho.poo.modelo;
 
 public final class Professor extends Pessoa{
 	private String siape;
+	private int idProfessor;
 	
 	public String getSiape() {
 		return siape;
@@ -9,6 +10,12 @@ public final class Professor extends Pessoa{
 
 	public void setSiape(String siape) {
 		this.siape = siape;
+	}
+	public int getIdProfessor() {
+		return idProfessor;
+	}
+	public void setIdProfessor(int idProfessor) {
+		this.idProfessor = idProfessor;
 	}
 
 	public Professor() {

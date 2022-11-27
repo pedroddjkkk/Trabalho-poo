@@ -5,6 +5,7 @@ public class Turma {
 	private int numeroMinimo;
 	private int anoIngresso;
 	private Curso curso;
+	private int idTurma;
 	
 	public Turma() {
 		super();
@@ -40,5 +41,11 @@ public class Turma {
 	}
 	public void setAnoIngresso(int anoIngresso) {
 		this.anoIngresso = anoIngresso;
+	}
+	public int getIdTurma() {
+		return idTurma;
+	}
+	public void setIdTurma(int idTurma) {
+		this.idTurma = idTurma;
 	}
 }

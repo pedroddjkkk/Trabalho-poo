@@ -95,8 +95,12 @@ public class Leitura implements ILeituraDeDados{
 	}
 
 	public Disciplina lerDadosDisciplina(Professor professor, Turma turma) {
-		// TODO Auto-generated method stub
-		return null;
+		Scanner teclado = new Scanner(System.in);
+		System.out.println("Informe o nome da disciplina:");
+		String nome = teclado.nextLine();
+		System.out.println("Informe a carga horaria da disciplina:");
+		int cargaHoraria = teclado.nextInt();
+		return new Disciplina(nome, cargaHoraria, turma, professor);
 	}
 
 	public Matricula lerDadosMatricula() {

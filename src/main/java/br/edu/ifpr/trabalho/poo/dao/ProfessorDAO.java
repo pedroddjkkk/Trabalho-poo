@@ -28,6 +28,22 @@ public class ProfessorDAO {
 		}		
 		return listaDeProfessor;
 	}
+
+	public static Professor listar(int fk){
+		String SQL = "SELECT DISTINCT * FROM matricula.tb_professor WHERE id_pessoa = ?";
+		try {
+			PreparedStatement preparacaoDaInstrucao = Conexao.getConexao().prepareStatement(SQL);
+			preparacaoDaInstrucao.setInt(1, fk);
+			ResultSet resultado = preparacaoDaInstrucao.executeQuery();
+			resultado.next();
+			Professor c = transformarResultSetEmObjeto(resultado);
+			return c;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 	public static void salvar(Professor Professor) {
 		String SQL = "INSERT INTO tb_professor (nome, cpf, telefone, endereco, data_nascimento, siape) VALUES (?, ?, ?, ?, ?, ?)";

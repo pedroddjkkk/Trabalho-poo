@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import br.edu.ifpr.trabalho.poo.dao.AlunoDAO;
 import br.edu.ifpr.trabalho.poo.dao.CampusDAO;
 import br.edu.ifpr.trabalho.poo.dao.CursoDAO;
+import br.edu.ifpr.trabalho.poo.dao.DisciplinaDAO;
 import br.edu.ifpr.trabalho.poo.dao.ProfessorDAO;
 import br.edu.ifpr.trabalho.poo.dao.TurmaDAO;
 import br.edu.ifpr.trabalho.poo.interfaces.IBuscaDeDados;
@@ -44,8 +45,8 @@ public class Busca implements IBuscaDeDados{
 	}
 
 	public ArrayList<Disciplina> buscarDisciplinas() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Disciplina> c = DisciplinaDAO.listar();
+		return c;
 	}
 
 	public ArrayList<Curso> buscarCursos() {

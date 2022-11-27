@@ -29,6 +29,22 @@ public class TurmaDAO {
 		}		
 		return listaDeTurma;
 	}
+
+	public static Turma listar(int fk){
+		String SQL = "SELECT DISTINCT * FROM matricula.tb_turma WHERE id_turma = ?";
+		try {
+			PreparedStatement preparacaoDaInstrucao = Conexao.getConexao().prepareStatement(SQL);
+			preparacaoDaInstrucao.setInt(1, fk);
+			ResultSet resultado = preparacaoDaInstrucao.executeQuery();
+			resultado.next();
+			Turma c = transformarResultSetEmObjeto(resultado);
+			return c;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 	public static void salvar(Turma turma) {
 		String SQL = "INSERT INTO tb_turma (nome, numero_minimo, ano_ingresso, fk_curso) VALUES (?, ?, ?, ?)";
@@ -53,6 +69,7 @@ public class TurmaDAO {
 			turma.setNome(resultSet.getString("nome"));
 			turma.setNumeroMinimo(resultSet.getInt("numero_minimo"));
 			turma.setAnoIngresso(resultSet.getInt("ano_ingresso"));
+			turma.setIdTurma(resultSet.getInt("id_turma"));
 			curso = CursoDAO.listar(resultSet.getInt("fk_curso"));
 			turma.setCurso(curso);
 			return turma;
