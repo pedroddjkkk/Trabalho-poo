@@ -16,5 +16,13 @@ public final class Aluno extends Pessoa{
 	public void imprimirDados() {
 		
 	}
+
+	public int getAnoIngresso() {
+		return anoIngresso;
+	}
+
+	public void setAnoIngresso(int anoIngresso) {
+		this.anoIngresso = anoIngresso;
+	}
 		
 }

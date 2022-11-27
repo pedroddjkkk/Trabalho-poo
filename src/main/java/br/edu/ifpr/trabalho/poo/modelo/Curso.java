@@ -4,15 +4,24 @@ public class Curso {
 	private String nome;
 	private String duracao;
 	private String modalidade;
+	private Campus campus;
+	private int idCurso;
 	
+	public int getIdCurso() {
+		return idCurso;
+	}
+	public void setIdCurso(int idCurso) {
+		this.idCurso = idCurso;
+	}
 	public Curso() {
 		super();
 	}
-	public Curso(String nome, String duracao, String modalidade) {
+	public Curso(String nome, String duracao, String modalidade, Campus campus) {
 		super();
 		this.nome = nome;
 		this.duracao = duracao;
 		this.modalidade = modalidade;
+		this.campus = campus;
 	}
 	
 	public String getNome() {
@@ -32,5 +41,11 @@ public class Curso {
 	}
 	public void setModalidade(String modalidade) {
 		this.modalidade = modalidade;
+	}
+	public Campus getCampus() {
+		return campus;
+	}
+	public void setCampus(Campus campus) {
+		this.campus = campus;
 	}
 }

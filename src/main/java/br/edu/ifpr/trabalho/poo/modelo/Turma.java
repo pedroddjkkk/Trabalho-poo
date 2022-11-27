@@ -4,17 +4,25 @@ public class Turma {
 	private String nome;
 	private int numeroMinimo;
 	private int anoIngresso;
+	private Curso curso;
 	
 	public Turma() {
 		super();
 	}
-	public Turma(String nome, int numeroMinimo, int anoIngresso) {
+	public Turma(String nome, int numeroMinimo, int anoIngresso, Curso curso) {
 		super();
 		this.nome = nome;
 		this.numeroMinimo = numeroMinimo;
 		this.anoIngresso = anoIngresso;
+		this.curso = curso;
 	}
 	
+	public Curso getCurso() {
+		return curso;
+	}
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
 	public String getNome() {
 		return nome;
 	}

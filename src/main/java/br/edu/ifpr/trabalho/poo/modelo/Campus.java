@@ -4,6 +4,7 @@ public class Campus {
 	private String nome;
 	private String endereco;
 	private String cidade;
+	private int idCampus;
 		
 	public Campus() {
 		super();
@@ -32,5 +33,11 @@ public class Campus {
 	}
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
+	}
+	public int getIdCampus() {
+		return idCampus;
+	}
+	public void setIdCampus(int idCampus) {
+		this.idCampus = idCampus;
 	}
 }

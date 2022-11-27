@@ -10,7 +10,7 @@ import br.edu.ifpr.trabalho.poo.modelo.Campus;
 
 public class CampusDAO {
 	
-	public ArrayList<Campus> listar(){
+	public static ArrayList<Campus> listar(){
 		ArrayList<Campus> listaDeCampus = new ArrayList<Campus>();
 		String SQL = "SELECT * FROM matricula.tb_campus";
 		
@@ -30,7 +30,7 @@ public class CampusDAO {
 		return listaDeCampus;
 	}
 	
-	public void salvar(Campus campus) {
+	public static void salvar(Campus campus) {
 		String SQL = "INSERT INTO tb_campus (nome, endereco, cidade) VALUES (?, ?, ?)";
 
 		try {
@@ -45,7 +45,7 @@ public class CampusDAO {
 		}
 	}
 
-	public ArrayList<Campus> buscar() {
+	public static ArrayList<Campus> buscar() {
 		ArrayList<Campus> listaDeCampus = new ArrayList<Campus>();
 		String SQL = "SELECT * FROM tb_campus";
 		try {
@@ -64,7 +64,7 @@ public class CampusDAO {
 		return listaDeCampus;
 	}
 	
-	public Campus transformarResultSetEmObjeto(ResultSet resultSet) throws SQLException {
+	public static Campus transformarResultSetEmObjeto(ResultSet resultSet) throws SQLException {
 		Campus campus = new Campus();
 		try {
 			campus.setNome(resultSet.getString("nome"));
