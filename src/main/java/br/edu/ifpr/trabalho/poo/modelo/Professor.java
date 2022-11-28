@@ -29,7 +29,12 @@ public final class Professor extends Pessoa{
 
 	@Override
 	public void imprimirDados() {
-		
+		System.out.println("Nome: " + this.nome);
+		System.out.println("CPF: " + this.cpf);
+		System.out.println("Telefone: " + this.telefone);
+		System.out.println("Endereço: " + this.endereco);
+		System.out.println("Data de Nascimento: " + this.dataNascimento);
+		System.out.println("Siape: " + this.siape);
 	}
 
 }
