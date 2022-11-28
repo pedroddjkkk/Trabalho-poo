@@ -4,6 +4,7 @@ import br.edu.ifpr.trabalho.poo.dao.AlunoDAO;
 import br.edu.ifpr.trabalho.poo.dao.CampusDAO;
 import br.edu.ifpr.trabalho.poo.dao.CursoDAO;
 import br.edu.ifpr.trabalho.poo.dao.DisciplinaDAO;
+import br.edu.ifpr.trabalho.poo.dao.MatriculaDAO;
 import br.edu.ifpr.trabalho.poo.dao.ProfessorDAO;
 import br.edu.ifpr.trabalho.poo.dao.TurmaDAO;
 import br.edu.ifpr.trabalho.poo.interfaces.IInserirDados;
@@ -40,7 +41,7 @@ public class Insercao implements IInserirDados{
 	}
 
 	public void salvarMatricula(Matricula matricula) {
-		// TODO Auto-generated method stub
+		MatriculaDAO.salvar(matricula);
 		
 	}
 

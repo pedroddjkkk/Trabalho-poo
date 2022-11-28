@@ -10,9 +10,11 @@ import br.edu.ifpr.trabalho.poo.implementacao.Leitura;
 import br.edu.ifpr.trabalho.poo.interfaces.IBuscaDeDados;
 import br.edu.ifpr.trabalho.poo.interfaces.IInserirDados;
 import br.edu.ifpr.trabalho.poo.interfaces.ILeituraDeDados;
+import br.edu.ifpr.trabalho.poo.modelo.Aluno;
 import br.edu.ifpr.trabalho.poo.modelo.Campus;
 import br.edu.ifpr.trabalho.poo.modelo.Curso;
 import br.edu.ifpr.trabalho.poo.modelo.Disciplina;
+import br.edu.ifpr.trabalho.poo.modelo.Matricula;
 import br.edu.ifpr.trabalho.poo.modelo.Professor;
 import br.edu.ifpr.trabalho.poo.modelo.Turma;
 
@@ -26,12 +28,10 @@ public class teste {
 		Turma turma = leitura.lerDadosTurma();
 		Disciplina d = leitura.lerDadosDisciplina(professor, turma);
 		insercao.salvarDisciplina(d); */
-
-
-		ArrayList<Disciplina> turmas = busca.buscarDisciplinas();
-		for(Iterator iterator = turmas.iterator(); iterator.hasNext();) {
-			Disciplina disciplina = (Disciplina) iterator.next();
-			System.out.println(disciplina.getTurma().getCurso().getCampus().getEndereco());
+		
+		ArrayList<Matricula> matriculas = busca.buscarMatriculasAtivas();
+		for(Matricula m : matriculas) {
+			System.out.println(m);
 		}
 	}
 }

@@ -4,15 +4,19 @@ public class Matricula {
 	private String ra;
 	private String data;
 	private boolean situacao;
+	private Turma turma;
+	private Aluno aluno;
 	
 	public Matricula() {
 		super();
 	}
-	public Matricula(String ra, String data, boolean situacao) {
+	public Matricula(String ra, String data, boolean situacao, Turma turma, Aluno aluno) {
 		super();
 		this.ra = ra;
 		this.data = data;
 		this.situacao = situacao;
+		this.turma = turma;
+		this.aluno = aluno;
 	}
 	
 	public String getRa() {
@@ -32,5 +36,17 @@ public class Matricula {
 	}
 	public void setSituacao(boolean situacao) {
 		this.situacao = situacao;
+	}
+	public Turma getTurma() {
+		return turma;
+	}
+	public void setTurma(Turma turma) {
+		this.turma = turma;
+	}
+	public Aluno getAluno() {
+		return aluno;
+	}
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
 	}
 }

@@ -28,6 +28,22 @@ public class AlunoDAO {
 		}		
 		return listaDeAluno;
 	}
+
+	public static Aluno listar(int fk){
+		String SQL = "SELECT DISTINCT * FROM matricula.tb_aluno WHERE id_pessoa = ?";
+		try {
+			PreparedStatement preparacaoDaInstrucao = Conexao.getConexao().prepareStatement(SQL);
+			preparacaoDaInstrucao.setInt(1, fk);
+			ResultSet resultado = preparacaoDaInstrucao.executeQuery();
+			resultado.next();
+			Aluno c = transformarResultSetEmObjeto(resultado);
+			return c;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 	public static void salvar(Aluno Aluno) {
 		String SQL = "INSERT INTO tb_aluno (nome, cpf, telefone, endereco, data_nascimento, ano_ingresso) VALUES (?, ?, ?, ?, ?, ?)";

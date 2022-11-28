@@ -47,17 +47,28 @@ public class TurmaDAO {
 	}
 	
 	public static void salvar(Turma turma) {
-		String SQL = "INSERT INTO tb_turma (nome, numero_minimo, ano_ingresso, fk_curso) VALUES (?, ?, ?, ?)";
-
-		try {
-			PreparedStatement preparacaoDaInstrucao = Conexao.getConexao().prepareStatement(SQL);
-			preparacaoDaInstrucao.setString(1, turma.getNome());
-			preparacaoDaInstrucao.setInt(2, turma.getNumeroMinimo());
-			preparacaoDaInstrucao.setInt(3, turma.getAnoIngresso());
-			preparacaoDaInstrucao.setInt(4, turma.getCurso().getIdCurso());
-
-			preparacaoDaInstrucao.executeUpdate();
-		} catch (Exception e) {
+		
+		String SQLTurma = "INSERT INTO tb_turma (nome, numero_minimo, ano_ingresso, fk_curso) VALUES (?, ?, ?, ?)";
+		String SQLCurso = "INSERT INTO tb_curso (nome, duracao, modalidade, fk_campus) VALUES (?, ?, ?, ?)";
+		String SQLBusca = "SELECT MAX(id_curso) FROM tb_curso";
+		try{	
+			PreparedStatement preparacaoDaInstrucao2 = Conexao.getConexao().prepareStatement(SQLCurso);
+			preparacaoDaInstrucao2.setString(1, turma.getCurso().getNome());
+			preparacaoDaInstrucao2.setString(2, turma.getCurso().getDuracao());
+			preparacaoDaInstrucao2.setString(3, turma.getCurso().getModalidade());
+			preparacaoDaInstrucao2.setInt(4, turma.getCurso().getCampus().getIdCampus());
+			preparacaoDaInstrucao2.executeUpdate();
+			PreparedStatement preparacaoDaInstrucao = Conexao.getConexao().prepareStatement(SQLBusca);
+			ResultSet resultado = preparacaoDaInstrucao.executeQuery();
+			resultado.next();
+            turma.getCurso().setIdCurso(resultado.getInt(1));
+			PreparedStatement preparacaoDaInstrucao3 = Conexao.getConexao().prepareStatement(SQLTurma);
+			preparacaoDaInstrucao3.setString(1, turma.getNome());
+			preparacaoDaInstrucao3.setInt(2, turma.getNumeroMinimo());
+			preparacaoDaInstrucao3.setInt(3, turma.getAnoIngresso());
+			preparacaoDaInstrucao3.setInt(4, turma.getCurso().getIdCurso());
+			preparacaoDaInstrucao3.executeUpdate();
+		} catch (Exception e){
 			e.printStackTrace();
 		}
 	}

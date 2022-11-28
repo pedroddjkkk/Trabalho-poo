@@ -6,6 +6,7 @@ import br.edu.ifpr.trabalho.poo.dao.AlunoDAO;
 import br.edu.ifpr.trabalho.poo.dao.CampusDAO;
 import br.edu.ifpr.trabalho.poo.dao.CursoDAO;
 import br.edu.ifpr.trabalho.poo.dao.DisciplinaDAO;
+import br.edu.ifpr.trabalho.poo.dao.MatriculaDAO;
 import br.edu.ifpr.trabalho.poo.dao.ProfessorDAO;
 import br.edu.ifpr.trabalho.poo.dao.TurmaDAO;
 import br.edu.ifpr.trabalho.poo.interfaces.IBuscaDeDados;
@@ -20,13 +21,18 @@ import br.edu.ifpr.trabalho.poo.modelo.Turma;
 public class Busca implements IBuscaDeDados{
 
 	public ArrayList<Matricula> buscarMatriculasAtivas() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Matricula> c = MatriculaDAO.listar();
+		for(Matricula d : c){
+			if(d.isSituacao() == false){
+				c.remove(d);
+			}
+		}
+		return c;
 	}
 
 	public ArrayList<Matricula> buscarTodasMatriculas() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Matricula> c = MatriculaDAO.listar();
+		return c;
 	}
 
 	public ArrayList<Aluno> buscarAlunos() {

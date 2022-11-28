@@ -84,14 +84,18 @@ public class Leitura implements ILeituraDeDados{
 		Curso curso = new Curso();
 		curso.setIdCurso(cursoId);
 		
-		Turma turma = new Turma(nome, nummin, ano, curso);
-		
-		return turma;
+		return new Turma(nome, nummin, ano, curso);
 	}
 
 	public Turma lerDadosTurma(Curso curso) {
-		// TODO Auto-generated method stub
-		return null;
+		Scanner teclado = new Scanner(System.in);
+		System.out.println("Informe o nome da turma:");
+		String nome = teclado.nextLine();
+		System.out.println("Informe o numero minimo da turma:");
+		int nummin = teclado.nextInt();
+		System.out.println("Informe o ano de ingresso da turma:");
+		int ano = teclado.nextInt();
+		return new Turma(nome, nummin, ano, curso);
 	}
 
 	public Disciplina lerDadosDisciplina(Professor professor, Turma turma) {
@@ -104,13 +108,27 @@ public class Leitura implements ILeituraDeDados{
 	}
 
 	public Matricula lerDadosMatricula() {
-		// TODO Auto-generated method stub
-		return null;
+		Scanner teclado = new Scanner(System.in);
+		System.out.println("Informe o ra da matricula:");
+		String ra = teclado.nextLine();
+		System.out.println("Informe a data da matricula:");
+		String data = teclado.nextLine();
+		System.out.println("Informe a situação da matricula:");
+		boolean situacao = teclado.nextBoolean();
+		Turma turma = lerDadosTurma();
+		Aluno aluno = lerDadosAluno();
+		return new Matricula(ra, data, situacao, turma, aluno);
 	}
 
 	public Matricula lerDadosMatricula(Aluno aluno, Turma turma) {
-		// TODO Auto-generated method stub
-		return null;
+		Scanner teclado = new Scanner(System.in);
+		System.out.println("Informe o ra da matricula:");
+		String ra = teclado.nextLine();
+		System.out.println("Informe a data da matricula:");
+		String data = teclado.nextLine();
+		System.out.println("Informe a situação da matricula:");
+		boolean situacao = teclado.nextBoolean();
+		return new Matricula(ra, data, situacao, turma, aluno);
 	}
 
 	public Campus lerDadosCampus() {
